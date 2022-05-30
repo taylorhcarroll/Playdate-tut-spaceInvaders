@@ -22,8 +22,26 @@ end
 
 -- collisions is added to allow bullets to hit enemies
 -- self.speed is added at a constant rate to self.x to move the bullet across the screen
+-- moveWithCollisions returns 4 things: "actual x", "actual y", which are the actual x&y the sprite 
+    -- ends up after taking collisons into consideration and "collisions" which is an array of things 
+    -- that the sprite has collided with, and "length", the length of that collision array
+-- we will capture these 4 things into local vars and check if a collision has occured by just checking if the length
+    -- of the array is > 0, if so, we'll loop through collisions array
+-- in this specific case, since at any point the bullet could technically collide with multiple enemies at once
+    -- and the only thing we collide with are enemies, the "collisions" array just contains a list of all enemies it has touched at any given moment
+-- "collisions" is a table filled with multiple fields, in this case only concerned with "other" field
 function Projectile:update()
-    self:moveWithCollisions(self.x + self.speed, self.y)
+    local actualX, actualY, collisions, length = self:moveWithCollisions(self.x + self.speed, self.y)
+    if length > 0 then
+        for index, collision in pairs(collisions) do
+            local collidedObject = collision['other']
+            if collidedObject:isa(Enemy) then
+                collidedObject:remove()
+            end
+        end
+        -- remove bullet if it's collided with enemy
+        self:remove()
+    end
 end
 
 
