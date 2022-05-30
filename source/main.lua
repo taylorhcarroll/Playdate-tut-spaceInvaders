@@ -10,6 +10,13 @@ import "scoreDisplay"
 local pd <const> = playdate
 local gfx <const> = pd.graphics
 
+function resetGame()
+	resetScore()
+	clearEnemies()
+	stopSpawner()
+	startSpawner()
+end
+
 createScoreDisplay()
 Player(30, 120)
 startSpawner()

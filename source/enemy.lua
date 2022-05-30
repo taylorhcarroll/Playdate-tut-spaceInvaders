@@ -18,7 +18,10 @@ end
 
 function Enemy:update()
     self:moveBy(-self.moveSpeed, 0)
-    
+    -- rudiemtary game "lost" condition, if enemy makes it past you, "game over!"
+    if self.x < 0 then
+        resetGame()
+    end
 end
 
 -- so that enemies don't get stuck on top of each other
