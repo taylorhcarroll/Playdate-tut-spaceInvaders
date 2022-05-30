@@ -37,6 +37,7 @@ function Projectile:update()
             local collidedObject = collision['other']
             if collidedObject:isa(Enemy) then
                 collidedObject:remove()
+                incrementScore()
             end
         end
         -- remove bullet if it's collided with enemy

@@ -5,10 +5,12 @@ import "CoreLibs/timer"
 
 import "player"
 import "enemySpawner"
+import "scoreDisplay"
 
 local pd <const> = playdate
 local gfx <const> = pd.graphics
 
+createScoreDisplay()
 Player(30, 120)
 startSpawner()
 
