@@ -4,13 +4,13 @@ import "CoreLibs/sprites"
 import "CoreLibs/timer"
 
 import "player"
-import "enemy"
+import "enemySpawner"
 
 local pd <const> = playdate
 local gfx <const> = pd.graphics
 
 Player(30, 120)
-Enemy(400, 120, 1)
+startSpawner()
 
 function pd.update()
 	gfx.sprite.update()

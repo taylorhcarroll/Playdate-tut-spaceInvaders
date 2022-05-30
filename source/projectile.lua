@@ -41,6 +41,9 @@ function Projectile:update()
         end
         -- remove bullet if it's collided with enemy
         self:remove()
+    -- despawn bullet if it flies offscreen for performance integrity
+    elseif  actualX > 400 then
+        self:remove()
     end
 end
 
